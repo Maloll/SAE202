@@ -31,16 +31,10 @@ def estValide(x,y) :
     
     return valide
 
-def initPlateau() : 
-    for i in range(1, 8) :
-        for j in range(1, 8) :
-            plateau[i][j] = 0
 
+plateau = [[0 for _ in range(8)]for _ in range(8)]
 global positions
 positions = []
-global plateau
-plateau = [], []
-initPlateau()
 print(plateau[2][2])
 print(f"2, 6 = {estValide(2, 6)}")
 print(f"5, 4 = {estValide(5, 4)}")
