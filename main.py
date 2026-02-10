@@ -1,3 +1,4 @@
+import numpy as np
 print("\nLE SUPER PROGRAMME DE MORTY\n\n")
 
 class Position:
@@ -20,7 +21,7 @@ def estValide(x,y) :
 
     if not(dejaVu):
         valide = True
-        if x > 8 or y > 8:
+        if x > 7 or y > 7:
             valide = False
         if x < 1 or y < 1:
             valide = False
@@ -31,11 +32,11 @@ def estValide(x,y) :
     
     return valide
 
-
+       
 plateau = [[0 for _ in range(8)]for _ in range(8)]
 global positions
 positions = []
-print(plateau[2][2])
+print(np.matrix(plateau))
 print(f"2, 6 = {estValide(2, 6)}")
 print(f"5, 4 = {estValide(5, 4)}")
 print(f"2, 6 = {estValide(2, 6)}")
