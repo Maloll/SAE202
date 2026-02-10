@@ -10,8 +10,6 @@ class Position:
         return self.x == value.x and self.y == value.y
 
 def estValide(x,y) :
-
-
     posVerif = Position(x,y)
     dejaVu = False
     for pos in positions:
@@ -33,10 +31,17 @@ def estValide(x,y) :
     
     return valide
 
+def initPlateau() : 
+    for i in range(1, 8) :
+        for j in range(1, 8) :
+            plateau[i][j] = 0
+
 global positions
 positions = []
 global plateau
 plateau = [], []
+initPlateau()
+print(plateau[2][2])
 print(f"2, 6 = {estValide(2, 6)}")
 print(f"5, 4 = {estValide(5, 4)}")
 print(f"2, 6 = {estValide(2, 6)}")
