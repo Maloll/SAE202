@@ -14,3 +14,9 @@ x - 2 | y + 1
 x - 2 | y - 1
 
 quand on a plusieur choix de déplacement, il faut choisir celui qui aura le moin de possibilité de déplacement ensuite en premier
+
+
+3 condition a ne pas avoir(que ce soit une ou plus) pour qu'il y est un tour de cavalier :
+- m et n impair et n different de 1
+- m = 1, 2, 4 et n different de 1
+- m = 3 et n = 4, 6, 8 
