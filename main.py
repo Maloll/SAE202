@@ -6,20 +6,15 @@ taille = 5
 
 
 def estValide(x,y) :
-    valide = True
-    
-    if x > taille - 1 or y > taille - 1 or x < 0 or y < 0:
-        valide = False
+    if x <= taille - 1 and y <= taille - 1 and x >= 0 and y >= 0 and plateau[x][y] == 0:
+        return False
     else:
-        if plateau[x][y] == 1: 
-            valide = False
-        
-    return valide
+        return True
 
 
-def backtracking(x,y,i):
-    plateau[x][y] = i
-    if i == taille * taille:
+def backtracking(x,y,compteur):
+    plateau[x][y] = compteur
+    if compteur == taille * taille:
         return True
 
     deplacements = [
@@ -27,7 +22,7 @@ def backtracking(x,y,i):
     ]
     for depX, depY in deplacements:
         if estValide(depX, depY):
-            if(backtracking(depX,depY,i+1)):
+            if(backtracking(depX,depY,compteur+1)):
                 return True
 
     plateau[x][y] = 0
@@ -37,6 +32,5 @@ def backtracking(x,y,i):
 global plateau
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
-x,y,i = 0,0,1
-backtracking(x,y,i)
+backtracking(0,0,1)
 print(np.matrix(plateau))
