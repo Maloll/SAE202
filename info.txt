@@ -1,0 +1,16 @@
+les 64 points
+
+tableau de 8 par 8
+
+diff type de mvmt : 
+
+x + 1 | y + 2
+x + 1 | y - 2
+x + 2 | y + 1
+x + 2 | y  - 2
+x - 1 | y + 2
+x - 1 | y - 2
+x - 2 | y + 1
+x - 2 | y - 1
+
+quand on a plusieur choix de déplacement, il faut choisir celui qui aura le moin de possibilité de déplacement ensuite en premier
