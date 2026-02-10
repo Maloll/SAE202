@@ -5,29 +5,43 @@ global taille
 taille = 5
 
 def estValide(x,y) :
-    valide = False
+    valide = True
     
     if x > taille - 1 or y > taille - 1 or x < 1 or y < 1:
-        valide = True
-        print("hors plateau")
+        valide = False
     else:
         if plateau[x][y] == 1: 
-            valide = True
-            print("Deja vu")
+            valide = False
         
     return valide
 
 
 def backtracking():
     x,y = 0, 0
-    print(estValide(x + 1 , y + 2))
-    print(estValide(x + 1 , y - 2))
-    print(estValide(x + 2 , y + 1))
-    print(estValide(x + 2 , y - 2))
-    print(estValide(x - 1 , y + 2))
-    print(estValide(x - 1 , y - 2))
-    print(estValide(x - 2 , y + 1))
-    print(estValide(x - 2 , y - 1))
+    if estValide(x + 1 , y + 2) == True:
+        x = x + 1
+        y = y + 2
+    elif estValide(x + 1 , y - 2) == True:
+        x = x + 1
+        y = y - 2
+    elif estValide(x + 2 , y + 1) == True:
+        x = x + 2
+        y = y + 1
+    elif estValide(x + 2 , y - 2) == True:
+        x = x + 2
+        y = y - 2
+    elif estValide(x - 1 , y + 2) == True:
+        x = x - 1
+        y = y + 2
+    elif estValide(x - 1 , y - 2) == True:
+        x = x - 1
+        y = y - 2
+    elif estValide(x - 2 , y + 1) == True:
+        x = x - 2
+        y = y + 1
+    elif estValide(x - 2 , y - 1) == True:
+        x = x - 2
+        y = y - 1
 
 
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
