@@ -12,11 +12,31 @@ x - 1 | y + 2
 x - 1 | y - 2
 x - 2 | y + 1
 x - 2 | y - 1
+---------------------------------------------------------------------------------------
+Information utile
+---------------------------------------------------------------------------------------
 
-quand on a plusieur choix de déplacement, il faut choisir celui qui aura le moin de possibilité de déplacement ensuite en premier
+quand on a plusieur choix de déplacement, il faut choisir celui qui aura le moin de possibilité de déplacement 
+ensuite en premier, quitte à annuler les derniers coups en cas d'impasse
 
 
 3 condition a ne pas avoir(que ce soit une ou plus) pour qu'il y est un tour de cavalier :
 - m et n impair et n different de 1
 - m = 1, 2, 4 et n different de 1
 - m = 3 et n = 4, 6, 8 
+---------------------------------------------------------------------------------------
+Phase 3 :
+---------------------------------------------------------------------------------------
+Cas 1 
+nombre de solution de parcours ouvert dans un echiquier de cote :
+n = 5 : 1 728
+n = 8 : 19 591 828 170 979 904
+
+
+
+Cas 2
+nombre de solution de parcours ferme dans un echiquier de cote :
+
+n = 6 : 9 862
+n = 8 : 26 534 728 821 064
+---------------------------------------------------------------------------------------
