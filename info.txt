@@ -40,3 +40,11 @@ nombre de solution de parcours ferme dans un echiquier de cote :
 n = 6 : 9 862
 n = 8 : 26 534 728 821 064
 ---------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+Isomorphisme d’un graphe a un autre c’est à dire qu’on peut déplacer les sommets de l’un afin d’avoir la copie conforme de l’autre
+
+Isomorphisme de graphe = bijection de sommet
+https://fr.wikipedia.org/wiki/Isomorphisme_de_graphes
+Voir les 2 premier graphes pour comprendre la bijection (le a devient 1)
+-----------------------------------------------------------------------------------------------------------
+si un graphe possède un cycle et qu’il est isomorphe a un autre graphe, alors cet autre graphe est également isomorphe
