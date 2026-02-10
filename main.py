@@ -3,8 +3,7 @@ print("\nLE SUPER PROGRAMME DE MORTY\n\n")
 
 global taille
 taille = 5
-global x,y
-x,y = 0, 0
+
 
 def estValide(x,y) :
     valide = True
@@ -19,6 +18,7 @@ def estValide(x,y) :
 
 
 def backtracking():
+    global x, y
     if estValide(x + 1 , y + 2) == True:
         x = x + 1
         y = y + 2
@@ -50,7 +50,10 @@ def backtracking():
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 global positions
 positions = []
-backtracking()
+global x,y
+x,y = 0, 0
+for _ in range(20):
+    backtracking()
 print(np.matrix(plateau))
 print(f"1, 1 = {estValide(1, 1)}")
 print(f"4, 2 = {estValide(4, 2)}")
