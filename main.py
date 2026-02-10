@@ -17,55 +17,26 @@ def estValide(x,y) :
     return valide
 
 
-def backtracking():
-    global x,y,i
-    impasse = True
-    if estValide(x + 1 , y + 2) == True:
-        impasse = False
-        x = x + 1
-        y = y + 2
-    elif estValide(x + 1 , y - 2) == True:
-        impasse = False
-        x = x + 1
-        y = y - 2
-    elif estValide(x + 2 , y + 1) == True:
-        impasse = False
-        x = x + 2
-        y = y + 1
-    elif estValide(x + 2 , y - 2) == True:
-        impasse = False
-        x = x + 2
-        y = y - 2
-    elif estValide(x - 1 , y + 2) == True:
-        impasse = False
-        x = x - 1
-        y = y + 2
-    elif estValide(x - 1 , y - 2) == True:
-        impasse = False
-        x = x - 1
-        y = y - 2
-    elif estValide(x - 2 , y + 1) == True:
-        impasse = False
-        x = x - 2
-        y = y + 1
-    elif estValide(x - 2 , y - 1) == True:
-        impasse = False
-        x = x - 2
-        y = y - 1
-    if impasse != True:
-        i = i + 1
-        plateau[x][y] = 1
-    else:
-        i = i - 1
+def backtracking(x,y,i):
+    plateau[x][y] = i
+    if i == taille * taille:
+        return True
 
+    deplacements = [
+        (x + 2, y +1), (x + 1, y + 2), (x -1, y +2), (x - 2, y + 1), (x - 2, y -1), (x - 1, y - 2), (x + 1, y - 2), (x + 2, y - 1)
+    ]
+    for depX, depY in deplacements:
+        if estValide(depX, depY):
+            if(backtracking(depX,depY,i+1)):
+                return True
+
+    plateau[x][y] = 0
+    return False
+
+
+global plateau
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
-global positions
-positions = []
-global x,y,i
-x,y,i = 0,0,1
 
-backtracking()
+x,y,i = 0,0,1
+backtracking(x,y,i)
 print(np.matrix(plateau))
-print(f"1, 1 = {estValide(1, 1)}")
-print(f"4, 2 = {estValide(4, 2)}")
-print(f"1, 1 = {estValide(1, 1)}")
