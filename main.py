@@ -35,6 +35,8 @@ def estValide(x,y) :
 
 global positions
 positions = []
+global plateau
+plateau = [], []
 print(f"2, 6 = {estValide(2, 6)}")
 print(f"5, 4 = {estValide(5, 4)}")
 print(f"2, 6 = {estValide(2, 6)}")
