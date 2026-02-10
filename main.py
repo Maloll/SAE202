@@ -1,15 +1,14 @@
 import numpy as np
 print("\nLE SUPER PROGRAMME DE MORTY\n\n")
 
-global taille
-taille = 5
 
+taille = 5
+plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
 def estValide(x,y) :
-    if x <= taille - 1 and y <= taille - 1 and x >= 0 and y >= 0 and plateau[x][y] == 0:
+    if x < taille and y < taille and x >= 0 and y >= 0 and plateau[x][y] == 0:
         return False
-    else:
-        return True
+    return True
 
 
 def backtracking(x,y,compteur):
@@ -27,10 +26,6 @@ def backtracking(x,y,compteur):
 
     plateau[x][y] = 0
     return False
-
-
-global plateau
-plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
 backtracking(0,0,1)
 print(np.matrix(plateau))
