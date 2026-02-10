@@ -9,7 +9,7 @@ x,y = 0, 0
 def estValide(x,y) :
     valide = True
     
-    if x > taille - 1 or y > taille - 1 or x < 1 or y < 1:
+    if x > taille - 1 or y > taille - 1 or x < 0 or y < 0:
         valide = False
     else:
         if plateau[x][y] == 1: 
