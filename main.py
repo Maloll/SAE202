@@ -29,16 +29,39 @@ def backtracking(x,y,compteur):
     return False 
 
 def afficherPlateau(plateau):
-    plt.figure(figsize=(8, 8))
+    plt.figure(figsize=(7, 7))
     
-    plt.imshow(plateau, cmap='binary')
+    plateauJeu = [[0 for _ in range(taille)] for _ in range(taille)]
+    for i in range(taille):
+        for j in range(taille):
+            if i % 2 == 0:
+                if j % 2 == 0:
+                    plateauJeu[i][j] = 1
+            else:
+                if j % 2 != 0:
+                    plateauJeu[i][j] = 1
+
+
+    plt.imshow(plateauJeu, cmap='binary')
+
+    liste_x = [0 for _ in range(taille * taille + 1)]
+    liste_y = [0 for _ in range(taille * taille + 1)]
 
     for i in range(taille):
         for j in range(taille):
             chiffre = plateau[i][j]
-            plt.text(j, i, int(chiffre), ha='center', va='center', color='red', fontsize=12)
-            
+            liste_x[chiffre] = j
+            liste_y[chiffre] = i
+    
+    
+    for i in range(25):
+        plt.annotate('', xy=(liste_x[i+1], liste_y[i+1]), xytext=(liste_x[i], liste_y[i]), arrowprops=dict(arrowstyle='->', color='darkturquoise', lw=3))
 
+    for i in range(taille):
+        for j in range(taille):
+            nombre = plateau[i][j]
+            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=16, fontweight='bold')
+    #plt.plot(liste_x, liste_y, marker='o', color='darkturquoise', linestyle='-', linewidth=2)
     plt.title("Parcours du Cavalier")
     plt.show()
 
