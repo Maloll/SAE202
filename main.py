@@ -22,10 +22,10 @@ def backtracking(x,y,compteur):
     ]
     for depX, depY in deplacements:
         if estValide(depX, depY): # verifie si la case determiner par le deplacement est libre
-            if(backtracking(depX,depY,compteur+1)): # on teste toutes les possibilités depuis cette nouvelle case
+            if(backtracking(depX,depY,compteur+1)): # on teste toutes les possibilités depuis cette nouvelle case jusqua la victoire
                 return True
 
-    plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0
+    plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
     return False 
 
 def afficherPlateau(plateau):
