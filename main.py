@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 print("\nLe problemme du cavalier\n\n")
 
 
-taille = 5
+taille = 8
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
 
@@ -61,7 +61,7 @@ def afficherPlateau(plateau):
     for i in range(taille):
         for j in range(taille):
             nombre = plateau[i][j]
-            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=16, fontweight='bold')
+            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=10, fontweight='bold')
     #plt.plot(liste_x, liste_y, marker='o', color='darkturquoise', linestyle='-', linewidth=2)
     plt.title("Parcours du Cavalier")
     plt.show()
