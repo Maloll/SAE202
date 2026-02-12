@@ -6,10 +6,12 @@ print("\nLe problemme du cavalier\n\n")
 taille = 5
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
+
 def estValide(x,y) :
     if x < taille and y < taille and x >= 0 and y >= 0 and plateau[x][y] == 0:
         return True
     return False
+
 
 
 def backtracking(x,y,compteur):
@@ -28,18 +30,18 @@ def backtracking(x,y,compteur):
     plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
     return False 
 
+
+
 def afficherPlateau(plateau):
     plt.figure(figsize=(7, 7))
     
     plateauJeu = [[0 for _ in range(taille)] for _ in range(taille)]
     for i in range(taille):
         for j in range(taille):
-            if i % 2 == 0:
-                if j % 2 == 0:
-                    plateauJeu[i][j] = 1
-            else:
-                if j % 2 != 0:
-                    plateauJeu[i][j] = 1
+            if i % 2 == 0 and j % 2 ==0:
+                plateauJeu[i][j] = 1
+            elif j % 2 != 0 and i % 2 !=0:
+                plateauJeu[i][j] = 1
 
 
     plt.imshow(plateauJeu, cmap='binary')
@@ -53,8 +55,7 @@ def afficherPlateau(plateau):
             liste_x[chiffre] = j
             liste_y[chiffre] = i
     
-    
-    for i in range(25):
+    for i in range(1,taille*taille):
         plt.annotate('', xy=(liste_x[i+1], liste_y[i+1]), xytext=(liste_x[i], liste_y[i]), arrowprops=dict(arrowstyle='->', color='darkturquoise', lw=3))
 
     for i in range(taille):
@@ -66,7 +67,11 @@ def afficherPlateau(plateau):
     plt.show()
 
 
-if(backtracking(0,0,1)):
+
+# prog
+x = int(input("x : "))
+y = int(input("y : "))
+if(backtracking(x-1,y-1,1)):
     afficherPlateau(plateau)
 else:
     print("Pas de solution")
