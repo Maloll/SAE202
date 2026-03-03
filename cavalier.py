@@ -4,6 +4,7 @@ print("\nLe problemme du cavalier\n\n")
 
 
 taille = 8
+nbMov = 0
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
 
@@ -15,6 +16,8 @@ def estValide(x,y) :
 
 
 def backtracking(x,y,compteur):
+    global nbMov
+    nbMov = nbMov + 1
     plateau[x][y] = compteur
     if compteur == taille * taille: # si on a deja fais toutes les cases, on arrete
         return True
@@ -35,8 +38,8 @@ def backtracking(x,y,compteur):
 def afficherPlateau(plateau):
     plt.figure(figsize=(7, 7))
     
-    plateauJeu = [[0 for _ in range(taille)] for _ in range(taille)]
-    for i in range(taille):
+    plateauJeu = [[0 for _ in range(taille)] for _ in range(taille)] # on creer un tableau en taille² avec des 0 partout
+    for i in range(taille): # on mets des 1 une case sur 2 et en diagonal (comme un plateau d'echec)
         for j in range(taille):
             if i % 2 == 0 and j % 2 ==0:
                 plateauJeu[i][j] = 1
@@ -44,24 +47,25 @@ def afficherPlateau(plateau):
                 plateauJeu[i][j] = 1
 
 
-    plt.imshow(plateauJeu, cmap='binary')
+    plt.imshow(plateauJeu, cmap='binary') # on affiche en mode binary pour mettre les 0 en blanc et les 1 en noir
 
-    liste_x = [0 for _ in range(taille * taille + 1)]
+    # on liste les x et les y
+    liste_x = [0 for _ in range(taille * taille + 1)] 
     liste_y = [0 for _ in range(taille * taille + 1)]
 
     for i in range(taille):
-        for j in range(taille):
+        for j in range(taille): # on mets les coordonées dans l'odre
             chiffre = plateau[i][j]
-            liste_x[chiffre] = j
+            liste_x[chiffre] = j 
             liste_y[chiffre] = i
     
     for i in range(1,taille*taille):
-        plt.annotate('', xy=(liste_x[i+1], liste_y[i+1]), xytext=(liste_x[i], liste_y[i]), arrowprops=dict(arrowstyle='->', color='darkturquoise', lw=3))
+        plt.annotate('', xy=(liste_x[i+1], liste_y[i+1]), xytext=(liste_x[i], liste_y[i]), arrowprops=dict(arrowstyle='->', color='darkturquoise', lw=3)) # on creer les fleches a partir des liste de coordonnées et un arrow style
 
     for i in range(taille):
         for j in range(taille):
             nombre = plateau[i][j]
-            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=10, fontweight='bold')
+            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=10, fontweight='bold') # on ajoute les chiffres de l'ordre des deplacements en rouge sur chaque case
     #plt.plot(liste_x, liste_y, marker='o', color='darkturquoise', linestyle='-', linewidth=2)
     plt.title("Parcours du Cavalier")
     plt.show()
@@ -72,6 +76,7 @@ def afficherPlateau(plateau):
 x = int(input("x : "))
 y = int(input("y : "))
 if(backtracking(x-1,y-1,1)):
+    print(f"Nombre de mouvements : {nbMov}")
     afficherPlateau(plateau)
 else:
     print("Pas de solution")
