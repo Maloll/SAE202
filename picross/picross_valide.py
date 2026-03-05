@@ -16,10 +16,10 @@ def est_valide(ligne,indices) :
     return valide
 
 
-indice = [1,3]
+"""indice = [1,3]
 ligne = [1,0,1,1,1,1]
 print(f"FAUX ? {est_valide(ligne,indice)}")
 
 indice = [1,3]
 ligne = [1,0,0,1,1,1]
-print(f"BON ?  {est_valide(ligne,indice)}")
+print(f"BON ?  {est_valide(ligne,indice)}")"""
