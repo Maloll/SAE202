@@ -8,7 +8,6 @@ def picrossMaker(Nomfich) :
             ligne_int = [int(case) for case in ligne]
             picross.append(ligne_int)
 
-
     grille_indice_ligne = []
     for ligne in picross :
         n = 0
