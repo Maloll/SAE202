@@ -2,18 +2,24 @@ def est_valide(ligne,indices) :
     valide = True
     n = 0
     i = 0
-    for c in ligne + [0] :
+    nb_indices = len(indices)
+    for c in ligne  :
         if c !=0:
             n = n + 1
         elif n > 0 :
-            if n == indices[i] :
+            if i > nb_indices and n == indices[i] :
                 i = i + 1
                 n = 0
             else :
-                valide = False
-                break
-            
-    return valide
+                return False
+    if n > 0:
+        if i < nb_indices and n == indices[i] :
+            i = i + 1
+        else :
+            return False
+    
+    return valide and i == nb_indices
+
 
 
 """indice = [1,3]
