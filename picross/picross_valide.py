@@ -7,7 +7,7 @@ def est_valide(ligne,indices) :
         if c !=0:
             n = n + 1
         elif n > 0 :
-            if i > nb_indices and n == indices[i] :
+            if n == indices[i] :
                 i = i + 1
                 n = 0
             else :
@@ -27,5 +27,5 @@ ligne = [1,0,1,1,1,1]
 print(f"FAUX ? {est_valide(ligne,indice)}")
 
 indice = [1,3]
-ligne = [1,0,0,1,1,1]
-print(f"BON ?  {est_valide(ligne,indice)}")"""
+ligne2 = [1,0,0,1,1,1]
+print(f"BON ?  {est_valide(ligne2,indice)}")"""
