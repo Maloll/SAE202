@@ -14,22 +14,22 @@ grille = []
 def backtraking_du_futur(compteur) :
     plateau = []
     if compteur == taille * 2 :
+        colonne = []
+        for i in range(taille) :
+            for ligne in grille :
+                colonne.append(ligne[i])
+            if not est_valide(colonne, indices_colonne[i]) :
+                return False
         return True
     
-    if compteur <= taille :
-        for bin in binary_list :
-            if est_valide(bin, indices_ligne[compteur]) :
-                if(backtraking_du_futur(compteur+1)) :
-                    grille.append(bin)
-                    return True
-    
-    elif compteur > taille :
-        colonne = []
-        for ligne in picross :
-            colonne.append(ligne[compteur - 5])
-        if est_valide(colonne, indices_colonne[compteur - 5]) :
-            if backtraking_du_futur(compteur+1) :
+
+    for bin in binary_list :
+        if est_valide(bin, indices_ligne[compteur]) :
+            if(backtraking_du_futur(compteur+1)) :
+                grille.append(bin)
                 return True
+
+
     grille.pop
     return False
         
