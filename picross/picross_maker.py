@@ -44,7 +44,7 @@ def picrossMaker(Nomfich) :
                 n = 0
         grille_indice_colonne.append(indices_colonne)
         
-    return grille_indice_ligne, grille_indice_colonne
+    return grille_indice_ligne, grille_indice_colonne, picross
 
 
 """ligne, colonne = picrossMaker("table.pic")

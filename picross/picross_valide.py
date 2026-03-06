@@ -27,5 +27,5 @@ ligne = [1,0,1,1,1,1]
 print(f"FAUX ? {est_valide(ligne,indice)}")
 
 indice = [1,3]
-ligne2 = [1,0,0,1,1,1]
+ligne2 = [1,0,1,1,1,0]
 print(f"BON ?  {est_valide(ligne2,indice)}")"""
