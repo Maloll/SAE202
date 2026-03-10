@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 print("\nLe problemme du cavalier\n\n")
 
 
-taille = 5
+taille = 8
 nbMov = 0
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
