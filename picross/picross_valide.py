@@ -3,11 +3,15 @@ def est_valide(ligne,indices) :
     n = 0
     i = 0
     nb_indices = len(indices)
+
+    if nb_indices == 0:
+        return sum(ligne) == 0
+    
     for c in ligne  :
         if c !=0:
             n = n + 1
         elif n > 0 :
-            if n == indices[i] :
+            if i < nb_indices and n == indices[i] :
                 i = i + 1
                 n = 0
             else :

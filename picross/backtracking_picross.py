@@ -13,27 +13,26 @@ grille = []
 
 def backtraking_du_futur(compteur) :
     plateau = []
-    if compteur == taille * 2 :
-        colonne = []
+    if compteur == taille:
+        grilleTest = grille
         for i in range(taille) :
-            for ligne in grille :
+            colonne = []
+            for ligne in grilleTest :
                 colonne.append(ligne[i])
             if not est_valide(colonne, indices_colonne[i]) :
                 return False
         return True
-    
 
     for bin in binary_list :
         if est_valide(bin, indices_ligne[compteur]) :
+            grille.append(bin)
             if(backtraking_du_futur(compteur+1)) :
-                grille.append(bin)
                 return True
-
-
-    grille.pop
+            grille.pop()
     return False
         
 
 
 print(backtraking_du_futur(0))
-print(grille[::-1])
+for ligne in grille:
+    print(f"#{ligne}#")
