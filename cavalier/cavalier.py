@@ -28,20 +28,14 @@ def backtracking(x,y,compteur):
     ]
 
     plateau[x][y] = compteur
-
-    if compteur == 1 and x == 1 and y == 1: # pour tester rapidement le 6x6
-        x = x + 1
-        y = y + 2
-        compteur = compteur + 1
     
 
     if compteur == taille * taille:
         for depX, depY in deplacements:
             if depX == xDebut and depY == yDebut: # si on a deja fais toutes les cases, on arrete
                 return True
-    plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
-    return False
-
+        plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
+        return False
     
     for depX, depY in deplacements:
         if estValide(depX, depY): # verifie si la case determiner par le deplacement est libre
@@ -97,8 +91,8 @@ def afficherPlateau(plateau):
 global xDebut,yDebut
 x = int(input("x : "))
 y = int(input("y : "))
-xDebut = 0
-yDebut = 0
+xDebut = x - 1
+yDebut = y - 1
 if(backtracking(x-1,y-1,1)):
     afficherPlateau(plateau)
 else:
