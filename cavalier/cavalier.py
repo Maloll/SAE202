@@ -28,6 +28,12 @@ def backtracking(x,y,compteur):
 
     plateau[x][y] = compteur
 
+    if compteur == 1 and x == 1 and y == 1:
+        x = x + 1
+        y = y + 2
+        compteur = compteur + 1
+    
+
     if compteur == taille * taille:
         for depX, depY in deplacements:
             if estValideBis(depX, depY) and plateau[depX][depY] == plateau[xDebut][yDebut]: # si on a deja fais toutes les cases, on arrete
