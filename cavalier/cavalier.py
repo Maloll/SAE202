@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 print("\nLe problemme du cavalier\n\n")
 
 
-taille = 8
+taille = 5
 nbMov = 0
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
@@ -65,7 +65,10 @@ def afficherPlateau(plateau):
     for i in range(taille):
         for j in range(taille):
             nombre = plateau[i][j]
-            plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=10, fontweight='bold') # on ajoute les chiffres de l'ordre des deplacements en rouge sur chaque case
+            if nombre == 1:
+                plt.text(j, i, int(nombre), ha='center', va='bottom', color='chartreuse', fontsize=10, fontweight='bold')
+            else:
+                plt.text(j, i, int(nombre), ha='center', va='bottom', color='red', fontsize=10, fontweight='bold') # on ajoute les chiffres de l'ordre des deplacements en rouge sur chaque case
     #plt.plot(liste_x, liste_y, marker='o', color='darkturquoise', linestyle='-', linewidth=2)
     plt.title("Parcours du Cavalier")
     plt.show()
