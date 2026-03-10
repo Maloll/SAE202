@@ -47,6 +47,6 @@ def picrossMaker(Nomfich) :
     return grille_indice_ligne, grille_indice_colonne, picross
 
 
-"""ligne, colonne = picrossMaker("table.pic")
+"""ligne, colonne, picross = picrossMaker("picross/10x10.pic")
 print(f"Indices lignes : {ligne}")
 print(f"Indices colonnes : {colonne}")"""

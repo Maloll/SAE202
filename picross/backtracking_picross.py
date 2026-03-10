@@ -3,16 +3,14 @@ from picross_valide import est_valide
 import numpy as np
 
 
-indices_ligne, indices_colonne, picross = picrossMaker("picross/table.pic")
+indices_ligne, indices_colonne, picross = picrossMaker("picross/10x10.pic")
 taille = len(indices_ligne)
-""" commande numpy trouvé sur internet permetant la creation d'un tableau avec toutes 
-    les combinaisons binaires possible pour une taille donné"""
-binary_list = np.unpackbits(np.expand_dims(np.arange(2 ** taille, dtype=np.uint8), -1), axis=1, bitorder='little', count=taille).tolist()
+print(len(indices_ligne))
+binary_list = np.unpackbits(np.expand_dims(np.arange(2 ** taille, dtype=np.uint8), -1), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
 
 grille = []
 
 def backtraking_du_futur(compteur) :
-    plateau = []
     if compteur == taille:
         grilleTest = grille
         for i in range(taille) :
@@ -30,9 +28,8 @@ def backtraking_du_futur(compteur) :
                 return True
             grille.pop()
     return False
-        
 
 
 print(backtraking_du_futur(0))
 for ligne in grille:
-    print(f"#{ligne}#")
+    print(f"{ligne}")
