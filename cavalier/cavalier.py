@@ -28,7 +28,7 @@ def backtracking(x,y,compteur):
 
     plateau[x][y] = compteur
 
-    if compteur == 1 and x == 1 and y == 1:
+    if compteur == 1 and x == 1 and y == 1: # pour tester rapidement le 6x6
         x = x + 1
         y = y + 2
         compteur = compteur + 1
