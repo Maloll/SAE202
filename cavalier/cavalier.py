@@ -22,6 +22,7 @@ def estValideBis(x,y) :
 def backtracking(x,y,compteur):
     global nbMov
     nbMov = nbMov + 1
+    
     deplacements = [
         (x + 2, y +1), (x + 1, y + 2), (x -1, y +2), (x - 2, y + 1), (x - 2, y -1), (x - 1, y - 2), (x + 1, y - 2), (x + 2, y - 1)
     ]
@@ -36,8 +37,10 @@ def backtracking(x,y,compteur):
 
     if compteur == taille * taille:
         for depX, depY in deplacements:
-            if estValideBis(depX, depY) and plateau[depX][depY] == plateau[xDebut][yDebut]: # si on a deja fais toutes les cases, on arrete
+            if depX == xDebut and depY == yDebut: # si on a deja fais toutes les cases, on arrete
                 return True
+    plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
+    return False
 
     
     for depX, depY in deplacements:
@@ -94,8 +97,8 @@ def afficherPlateau(plateau):
 global xDebut,yDebut
 x = int(input("x : "))
 y = int(input("y : "))
-xDebut = x-1
-yDebut = y -1 
+xDebut = 0
+yDebut = 0
 if(backtracking(x-1,y-1,1)):
     afficherPlateau(plateau)
 else:
