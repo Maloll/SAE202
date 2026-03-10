@@ -48,3 +48,8 @@ https://fr.wikipedia.org/wiki/Isomorphisme_de_graphes
 Voir les 2 premier graphes pour comprendre la bijection (le a devient 1)
 -----------------------------------------------------------------------------------------------------------
 si un graphe possède un cycle et qu’il est isomorphe a un autre graphe, alors cet autre graphe est également isomorphe
+-------------
+        if compteur == (taille * taille) - 1 and plateau[depX][depY] == plateau[sauvX][sauvY]:
+            return True
+        if compteur == (taille * taille) - 1 and plateau[depX][depY] != plateau[sauvX][sauvY]:
+            return False

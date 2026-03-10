@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 print("\nLe problemme du cavalier\n\n")
 
 
-taille = 5
+taille = 6
 nbMov = 0
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
@@ -13,27 +13,36 @@ def estValide(x,y) :
         return True
     return False
 
+def estValideBis(x,y) :
+    if x < taille and y < taille and x >= 0 and y >= 0:
+        return True
+    return False
 
 
 def backtracking(x,y,compteur):
     global nbMov
     nbMov = nbMov + 1
-    plateau[x][y] = compteur
-    if compteur == taille * taille: # si on a deja fais toutes les cases, on arrete
-        return True
-
     deplacements = [
         (x + 2, y +1), (x + 1, y + 2), (x -1, y +2), (x - 2, y + 1), (x - 2, y -1), (x - 1, y - 2), (x + 1, y - 2), (x + 2, y - 1)
     ]
+
+    plateau[x][y] = compteur
+
+    if compteur == taille * taille:
+        for depX, depY in deplacements:
+            if estValideBis(depX, depY) and plateau[depX][depY] == plateau[xDebut][yDebut]: # si on a deja fais toutes les cases, on arrete
+                return True
+
+    
     for depX, depY in deplacements:
         if estValide(depX, depY): # verifie si la case determiner par le deplacement est libre
             if(backtracking(depX,depY,compteur+1)): # on teste toutes les possibilités depuis cette nouvelle case jusqua la victoire
                 return True
-
+        
     plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
     return False 
 
-
+   
 
 def afficherPlateau(plateau):
     plt.figure(figsize=(7, 7))
@@ -76,10 +85,13 @@ def afficherPlateau(plateau):
 
 
 # prog
+global xDebut,yDebut
 x = int(input("x : "))
 y = int(input("y : "))
+xDebut = x-1
+yDebut = y -1 
 if(backtracking(x-1,y-1,1)):
-    print(f"Nombre de mouvements : {nbMov}")
     afficherPlateau(plateau)
 else:
     print("Pas de solution")
+print(f"Nombre de mouvements : {nbMov}")
