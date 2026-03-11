@@ -4,7 +4,7 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-indices_ligne, indices_colonne, picross = picrossMaker("picross/5x5.pic")
+indices_ligne, indices_colonne, picross = picrossMaker("picross/15x15.pic")
 taille = len(indices_ligne)
 binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
 print(f"Table picross en {len(indices_ligne)}x{len(indices_ligne)}")
