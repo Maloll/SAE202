@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 print("\nLe problemme du cavalier\n\n")
 
 
-taille = 6
+taille = 8
 nbMov = 0
 plateau = [[0 for _ in range(taille)]for _ in range(taille)]
 
@@ -32,9 +32,9 @@ def backtracking(x,y,compteur):
 
     if compteur == taille * taille:
         for depX, depY in deplacements:
-            if depX == xDebut and depY == yDebut: # si on a deja fais toutes les cases, on arrete
+            if depX == xDebut and depY == yDebut: # on verifie si la derniere case peut acceder a la premiere case
                 return True
-        plateau[x][y] = 0 # si aucun deplacement na fonctionner, on remets la case a 0 et on reviens en arriere
+        plateau[x][y] = 0 # si on ne peut pas acceder a la premiere case, on remets la case a 0 et on reviens en arriere
         return False
     
     for depX, depY in deplacements:
@@ -91,8 +91,8 @@ def afficherPlateau(plateau):
 global xDebut,yDebut
 x = int(input("x : "))
 y = int(input("y : "))
-xDebut = x - 1
-yDebut = y - 1
+xDebut = x - 1 #on sauvegarde les coordonnées de x
+yDebut = y - 1 #on sauvegarde les coordonnées de y
 if(backtracking(x-1,y-1,1)):
     afficherPlateau(plateau)
 else:
