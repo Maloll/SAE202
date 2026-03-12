@@ -5,17 +5,15 @@ import time
 import numpy as np
 import matplotlib.pyplot as plt
 
-indices_ligne, indices_colonne, picross = picrossMaker("picross/5x5.pic")
+"""indices_ligne, indices_colonne, picross = picrossMaker("picross/15x15.pic")
 taille = len(indices_ligne)
 binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
 print(f"Table picross en {len(indices_ligne)}x{len(indices_ligne)}")
 print(f"indices ligne : {indices_ligne}")
 print(f"indices colonnes : {indices_colonne}")
-debut = time.perf_counter()
+debut = time.perf_counter()"""
 
-#####################
-
-def cases_certaines_ligne(indices):
+def cases_certaines_ligne(indices,taille,binary_list):
     tab_certain = []
     tab_valide = []
     for bin in binary_list:
@@ -36,26 +34,6 @@ def cases_certaines_ligne(indices):
             tab_certain.append(0)
     return tab_certain
 
-def cases_certaines_tab(indices_ligne, indices_colonne):
-    certain_ligne = []
-    for indice in indices_ligne:
-        certain_ligne.append(cases_certaines_ligne(indice))
-
-    certain_colonne_temp = []
-    for indice in indices_colonne:
-        certain_colonne_temp.append(cases_certaines_ligne(indice))
-
-    certain_colonne = []
-    taille_certain_col = len(certain_colonne_temp[0])
-    for j in range(taille_certain_col): 
-        nouvelle_ligne = []
-        for i in range(len(certain_colonne_temp)):
-            nouvelle_ligne.append(certain_colonne_temp[i][j])
-        certain_colonne.append(nouvelle_ligne)
-        
-    return certain_ligne, certain_colonne
-
-
 def tab_fusion(ligne,colonne):
     tab_certain = []
     for i in range(len(ligne)):
@@ -69,6 +47,32 @@ def tab_fusion(ligne,colonne):
         tab_certain.append(ligne_certaine)
     return tab_certain
 
+def cases_certaines_tab(indices_ligne, indices_colonne):
+    taille = len(indices_ligne)
+    binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
+    
+    certain_ligne = []
+    for indice in indices_ligne:
+        certain_ligne.append(cases_certaines_ligne(indice,taille,binary_list))
+
+    certain_colonne_temp = []
+    for indice in indices_colonne:
+        certain_colonne_temp.append(cases_certaines_ligne(indice,taille,binary_list))
+
+    certain_colonne = []
+    taille_certain_col = len(certain_colonne_temp[0])
+    for j in range(taille_certain_col): 
+        nouvelle_ligne = []
+        for i in range(len(certain_colonne_temp)):
+            nouvelle_ligne.append(certain_colonne_temp[i][j])
+        certain_colonne.append(nouvelle_ligne)
+    
+    tab_certain = tab_fusion(certain_ligne,certain_colonne)
+    return tab_certain
+
+
+
+"""
 #####################
 certain_ligne, certain_colonne = cases_certaines_tab(indices_ligne, indices_colonne)
 tab_certain = tab_fusion(certain_ligne,certain_colonne)
@@ -79,3 +83,4 @@ fin = time.perf_counter()
 print(f"Exécuté en : {(fin - debut) * 1000:.4f} ms")
 
 #####################
+"""
