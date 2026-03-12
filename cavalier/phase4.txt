@@ -1,0 +1,15 @@
+1) étant donner que nous recherchions des solution dans des échiquier carré cela veut dire que si
+nous trouvons une solution, sa symetrie par rapport aux diagonales, à la symetrie vertical et à sa symetrie
+horozontale (ou bien la symetrie horizontale et vertical de la case solution et sa rotation a 90 degrés) 
+sera alors également solution (un max de 8 solution)
+
+2) 
+en testant le cas 3x3 on remarque qu'on ne peut pas partir du millieu et qu'en partant
+des côte, on ne pourra jamais atteindre le centre
+
+pour le cas du 4x4 , on observe que les angles on seulent 2 cases ou se déplacer
+(qui se trouvent etres dans le carré au centre de l'échiquier) donc il y aura forcement une
+impossibilité de parcourir tout les angles car pour arriver sur un angle et sortir de cette angle, on 
+utilise donc 2 cases mais pour parcourir les 4 angles, il faudrait donc utilise 8 cases, hors notre
+carré au centre de l'echiquier qui est le seul a avoir acces au angles possède seulement 4 cases
+donc theoriquement, il est impossble de parcourir tout les angles et donc toute les cases de l'echiquier
