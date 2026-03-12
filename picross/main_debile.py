@@ -3,7 +3,6 @@ from est_valide import est_valide
 from visioneuse_pic import afficher_pic
 import time
 import numpy as np
-import matplotlib.pyplot as plt
 
 indices_ligne, indices_colonne, picross = picrossMaker("picross/5x5.pic")
 taille = len(indices_ligne)
