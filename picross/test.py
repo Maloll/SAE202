@@ -43,6 +43,31 @@ certain_colonne = []
 for indice in indices_colonne:
     certain_colonne.append(cases_certaines(indice))
 
+certain_colonne_droit = []
+taille_certain_col = len(certain_colonne[0])
+for j in range(taille_certain_col): 
+    nouvelle_ligne = []
+    for i in range(len(certain_colonne)):
+        nouvelle_ligne.append(certain_colonne[i][j])
+    certain_colonne_droit.append(nouvelle_ligne)
+
+for c in certain_colonne_droit:
+    print(c)
+print("---------------------")
+
+tab_certain = []
+for i in range(len(certain_ligne)):
+    ligne_certaine = []
+    for j in range(len(certain_ligne[i])):
+        if (certain_ligne[i][j] == 1 or certain_colonne_droit[i][j] == 1) :
+            case = 1
+        else : 
+            case = 0
+        ligne_certaine.append(case)
+    tab_certain.append(ligne_certaine)
+
+for ligne in tab_certain:
+    print(ligne)
 
 
 print("fini")
