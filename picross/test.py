@@ -1,5 +1,6 @@
 from picross_maker import picrossMaker
 from est_valide import est_valide
+from visioneuse_pic import afficher_pic
 import time
 import numpy as np
 import matplotlib.pyplot as plt
@@ -51,24 +52,22 @@ for j in range(taille_certain_col):
         nouvelle_ligne.append(certain_colonne[i][j])
     certain_colonne_droit.append(nouvelle_ligne)
 
-for c in certain_colonne_droit:
-    print(c)
-print("---------------------")
 
-tab_certain = []
-for i in range(len(certain_ligne)):
-    ligne_certaine = []
-    for j in range(len(certain_ligne[i])):
-        if (certain_ligne[i][j] == 1 or certain_colonne_droit[i][j] == 1) :
-            case = 1
-        else : 
-            case = 0
-        ligne_certaine.append(case)
-    tab_certain.append(ligne_certaine)
+def tab_fusion(ligne,colonne):
+    tab_certain = []
+    for i in range(len(ligne)):
+        ligne_certaine = []
+        for j in range(len(ligne[i])):
+            if (ligne[i][j] == 1 or colonne[i][j] == 1) :
+                case = 1
+            else : 
+                case = 0
+            ligne_certaine.append(case)
+        tab_certain.append(ligne_certaine)
+    return tab_certain
 
-for ligne in tab_certain:
-    print(ligne)
-
+tab_certain = tab_fusion(certain_ligne,certain_colonne_droit)
+afficher_pic(tab_certain,indices_ligne,indices_colonne)
 
 print("fini")
 fin = time.perf_counter()
