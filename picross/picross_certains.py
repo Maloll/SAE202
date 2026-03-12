@@ -15,7 +15,7 @@ debut = time.perf_counter()
 
 #####################
 
-def cases_certaines(indices):
+def cases_certaines_ligne(indices):
     tab_certain = []
     tab_valide = []
     for bin in binary_list:
@@ -36,21 +36,24 @@ def cases_certaines(indices):
             tab_certain.append(0)
     return tab_certain
 
-certain_ligne = []
-for indice in indices_ligne:
-    certain_ligne.append(cases_certaines(indice))
+def cases_certaines_tab(indices_ligne, indices_colonne):
+    certain_ligne = []
+    for indice in indices_ligne:
+        certain_ligne.append(cases_certaines_ligne(indice))
 
-certain_colonne = []
-for indice in indices_colonne:
-    certain_colonne.append(cases_certaines(indice))
+    certain_colonne_temp = []
+    for indice in indices_colonne:
+        certain_colonne_temp.append(cases_certaines_ligne(indice))
 
-certain_colonne_droit = []
-taille_certain_col = len(certain_colonne[0])
-for j in range(taille_certain_col): 
-    nouvelle_ligne = []
-    for i in range(len(certain_colonne)):
-        nouvelle_ligne.append(certain_colonne[i][j])
-    certain_colonne_droit.append(nouvelle_ligne)
+    certain_colonne = []
+    taille_certain_col = len(certain_colonne_temp[0])
+    for j in range(taille_certain_col): 
+        nouvelle_ligne = []
+        for i in range(len(certain_colonne_temp)):
+            nouvelle_ligne.append(certain_colonne_temp[i][j])
+        certain_colonne.append(nouvelle_ligne)
+        
+    return certain_ligne, certain_colonne
 
 
 def tab_fusion(ligne,colonne):
@@ -66,7 +69,9 @@ def tab_fusion(ligne,colonne):
         tab_certain.append(ligne_certaine)
     return tab_certain
 
-tab_certain = tab_fusion(certain_ligne,certain_colonne_droit)
+#####################
+certain_ligne, certain_colonne = cases_certaines_tab(indices_ligne, indices_colonne)
+tab_certain = tab_fusion(certain_ligne,certain_colonne)
 afficher_pic(tab_certain,indices_ligne,indices_colonne)
 
 print("fini")
