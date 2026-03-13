@@ -1,0 +1,2 @@
+Étant donné que la recherche d'un circuit fermé hamiltonien en 8x8 nous prendrais des années avec notre programme actuelle, 
+car pas optimisé (backtracking simple) nous ne pouvons pas fournir de captures d'écrans de solution pour x : 4 y : 3
