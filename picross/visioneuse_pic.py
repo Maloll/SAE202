@@ -6,7 +6,7 @@ from picross_maker import picrossMaker
 
 def afficher_pic(grille,indices_ligne,indices_colonne):
     matrice = np.array(grille)
-    taille = len(grille[0])
+    taille = 10
     plt.figure(figsize=(taille,taille))
     plt.imshow(matrice, cmap='binary')
     plt.title(f"Table picross en {len(indices_ligne)}x{len(indices_ligne)}")

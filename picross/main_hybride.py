@@ -17,7 +17,29 @@ debut = time.perf_counter()
 
 grille = cases_certaines_tab(indices_ligne, indices_colonne)
 
+""" 
+    [0,1,1,1,0]
+    [0,0,1,0,0]
+"""
 
+
+def valide_hybride(bin, ligne, indice):
+    for i in range(len(ligne)):
+        if ligne[i] != 0 and bin[i] == 0:
+            return False
+    return est_valide(bin, indice)
+
+
+def trakbacking(bl, ligne, indice):
+    for i in range(len(bl)):
+        if valide_hybride(bl[i], ligne, indice):
+            bonne_ligne = bl[i]
+            break
+    return bonne_ligne
+
+ligne_test = [0,0,1,0,1]
+indice_test = [3]
+print(trakbacking(binary_list, ligne_test, indice_test))
 
 
 print("fini")
@@ -25,4 +47,4 @@ fin = time.perf_counter()
 print(f"Exécuté en : {(fin - debut) * 1000:.4f} ms")
 
 # affichage
-afficher_pic(grille,indices_ligne,indices_colonne)
+# afficher_pic(grille,indices_ligne,indices_colonne)
