@@ -31,23 +31,25 @@ def valide_hybride(bin, ligne, indice):
 
 
 def trakbacking(bl, ligne, indice):
+    tab_valide = []
     for bin in bl:
         if valide_hybride(bin, ligne, indice):
-            bonne_ligne = bin
-            break
-    return bonne_ligne
+            tab_valide.append(bin)
+            print()
+    return tab_valide
 
 def backtraking(grille, il, ic, bl):
+    tab_valide = []
     grille_valide = []
     for i, ligne in enumerate(grille):
-        bonne_ligne = trakbacking(bl, ligne, il[i])
-        grille_valide.append(bonne_ligne)
-    afficher_pic(grille_valide, il, ic)
+        tab_valide.append(trakbacking(bl, ligne, il[i]))
+    print(tab_valide)
 
-ligne_test = [0,0,1,0,1]
+
+ligne_test = [0,0,1,0,0]
 indice_test = [3]
 print(trakbacking(binary_list, ligne_test, indice_test))
-backtraking(grille, indices_ligne, indices_colonne, binary_list)
+# backtraking(grille, indices_ligne, indices_colonne, binary_list)
 
 print("fini")
 fin = time.perf_counter()
