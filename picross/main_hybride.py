@@ -37,7 +37,7 @@ def trakbacking(bl, ligne, indice):
             tab_valide.append(bin)
     return tab_valide
 
-def tab_valides(grille, il, ic, bl, tab_valide_ligne, tab_valide_colonne, grille_valide):
+def tab_valides(grille, il, ic, bl):
     for i, ligne in enumerate(grille):
         tab_valide_ligne.append(trakbacking(bl, ligne, il[i]))
     for i in range(len(grille)):
@@ -46,15 +46,17 @@ def tab_valides(grille, il, ic, bl, tab_valide_ligne, tab_valide_colonne, grille
             colonne.append(ligne[i])
         tab_valide_colonne.append(trakbacking(bl,colonne,ic[i]))
 
+    return tab_valide_ligne, tab_valide_colonne
 
-ligne_test = [0,0,1,0,0]
+
+ligne_test = [0,0,0,0,0,0,0,0,0,0]
 indice_test = [3]
-#print(trakbacking(binary_list, ligne_test, indice_test))
+print(trakbacking(binary_list, ligne_test, indice_test))
 grille_valide = []
 tab_valide_ligne = []
 tab_valide_colonne = []
-tab_valides(grille, indices_ligne, indices_colonne, binary_list, tab_valide_ligne, tab_valide_colonne, grille_valide)
-print(f"lignes_valides_lignes : {tab_valide_ligne}\nlignes_valides_colonnes : {tab_valide_colonne}")
+tab_valide_ligne, tab_valide_colonne = tab_valides(grille, indices_ligne, indices_colonne, binary_list)
+#print(f"lignes_valides_lignes : {tab_valide_ligne}\nlignes_valides_colonnes : {tab_valide_colonne}")
 print("fini")
 fin = time.perf_counter()
 print(f"Exécuté en : {(fin - debut) * 1000:.4f} ms")
