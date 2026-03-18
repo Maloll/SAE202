@@ -1,11 +1,11 @@
 from picross_maker import picrossMaker
 from est_valide import est_valide
 from visioneuse_pic import afficher_pic
-from picross_certains import cases_certaines_tab, tab_fusion
+from picross_certains import cases_certaines_tab, tab_fusion, cases_certaines_ligne
 import time
 import numpy as np
 
-taille = int(input())
+taille = int(input("taille : "))
 indices_ligne, indices_colonne, picross = picrossMaker(f"picross/{taille}x{taille}.pic")
 binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
 print(f"Table picross en {len(indices_ligne)}x{len(indices_ligne)}")
@@ -57,6 +57,15 @@ def tab_valides(grille, il, ic, bl):
                 return False
         return True"""
 
+
+def ligne_petite(tab_ligne):
+    petit = 0
+    for i, ligne in enumerate(tab_valide_ligne):
+        if petit > len(ligne):
+            petit = len(ligne)
+            pti_ligne = i
+    return pti_ligne
+
 def backtracking(compteur, tab_l, tab_c, il, ic, grille_valide):
     if compteur == len(il):
         for i in range(compteur):
@@ -64,7 +73,6 @@ def backtracking(compteur, tab_l, tab_c, il, ic, grille_valide):
             for ligne in grille_valide:
                 colonne.append(ligne[i])
             if not est_valide(colonne, ic[i]):
-                print("p")
                 return False
         return True
 
@@ -77,18 +85,19 @@ def backtracking(compteur, tab_l, tab_c, il, ic, grille_valide):
     return False
 
 
-ligne_test = [0,0,0,0,0,0,0,0,0,0]
-indice_test = [3]
+ligne_test = [0,1,0,0,0,1,0,0,0,0]
+indice_test = [3,2]
 #print(trakbacking(binary_list, ligne_test, indice_test))
 grille_valide = []
 tab_valide_ligne = []
 tab_valide_colonne = []
+#afficher_pic(cases_certaines_tab(indices_ligne,indices_colonne),indices_ligne,indices_colonne)
 tab_valide_ligne, tab_valide_colonne = tab_valides(grille, indices_ligne, indices_colonne, binary_list)
 #print(f"lignes_valides_lignes : {tab_valide_ligne}\nlignes_valides_colonnes : {tab_valide_colonne}")
-backtracking(0,tab_valide_ligne,tab_valide_colonne,indices_ligne,indices_colonne,grille_valide)
+#backtracking(0,tab_valide_ligne,tab_valide_colonne,indices_ligne,indices_colonne,grille_valide)
 print("fini")
 fin = time.perf_counter()
 print(f"Exécuté en : {(fin - debut) * 1000:.4f} ms")
 
 #affichage
-afficher_pic(grille_valide,indices_ligne,indices_colonne)
+#afficher_pic(grille_valide,indices_ligne,indices_colonne)
