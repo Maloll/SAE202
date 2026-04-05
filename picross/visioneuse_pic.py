@@ -27,5 +27,5 @@ def afficher_pic(grille,indices_ligne,indices_colonne):
     plt.yticks(range(len(indices_ligne)), [str(y) for y in indices_ligne])
     plt.show()
 
-#indices_ligne, indices_colonne, grille = picrossMaker("picross/10x10.pic")
+#indices_ligne, indices_colonne, grille = picrossMaker("picross/40.pic")
 #afficher_pic(grille,indices_ligne,indices_colonne)

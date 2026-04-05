@@ -7,7 +7,7 @@ import time
 import numpy as np
 
 nomFich = input("nomFich .pic : ")
-indices_ligne, indices_colonne, picross = picrossMaker(f"picross/{nomFich}")
+indices_ligne, indices_colonne, picross = picrossMaker(f"{nomFich}")
 taille = len(indices_ligne)
 binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire pour une taille donnée
 print(f"\nTable picross en {len(indices_ligne)}x{len(indices_ligne)}")
