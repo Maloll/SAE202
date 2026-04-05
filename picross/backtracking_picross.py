@@ -3,7 +3,7 @@ from est_valide import *
 import numpy as np
 
 def liste_valide(bl, ligne, indice):
-    # Fonction qui renvoie la liste des lignes valides pour une ligne
+    # Fonction qui renvoie la liste des lignes valides pour une ligne, en fonction des cases certaines
     tab_valide = []
     for bin in bl:
         if valide_hybride(bin, ligne, indice):
@@ -12,7 +12,7 @@ def liste_valide(bl, ligne, indice):
 
 
 def tab_valides(grille, il, ic, bl):
-    # Fonction qui renvoie une liste des listes des lignes valides
+    # Fonction qui renvoie un tableau de listes valides pour les lignes et colonnes
     tab_valide_ligne = []
     for i, ligne in enumerate(grille):
         tab_valide_ligne.append(liste_valide(bl, ligne, il[i]))
@@ -28,7 +28,8 @@ def tab_valides(grille, il, ic, bl):
 
 
 def backtracking(compteur, tab_l, tab_c, il, ic, grille_valide):
-    if compteur == len(il):
+    # Fonction backtracking qui utilise des listes personnalisés
+    if compteur == len(il): # Si on a déjà fais toutes les lignes, on teste les colonnes
         for i in range(compteur):
             colonne = []
             for ligne in grille_valide:

@@ -11,7 +11,7 @@ def afficher_pic(grille,indices_ligne,indices_colonne):
         if 2 in ligne :
             choix_couleur = 2
             break
-    
+    # On choisi les couleurs pour afficher correctement le picross
     if choix_couleur == 2:
         couleurs = ['red','black','white']
     else:
