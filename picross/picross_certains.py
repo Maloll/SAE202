@@ -1,5 +1,5 @@
 from picross_maker import picrossMaker
-from est_valide import est_valide
+from est_valide import *
 from visioneuse_pic import afficher_pic
 import time
 import numpy as np
@@ -87,6 +87,54 @@ def initialisation_tab_certains(indices_ligne, indices_colonne):
     tab_certain = tab_fusion(certain_ligne,certain_colonne)
     return tab_certain
 
+
+
+def cases_certaines_hybride(ligne_sur, indices,taille,binary_list):
+    tab_certain = []
+    tab_valide = []
+    for bin in binary_list:
+        if(valide_hybride(bin, ligne_sur, indices)): # si c'est valide on ajoute a la liste
+            tab_valide.append(bin)
+    colonnes = []
+    for i in range(taille):
+        colonne = []
+        for ligne in tab_valide :
+            colonne.append(ligne[i])
+        colonnes.append(colonne)
+    
+    # si la somme d'une colone est égale au nombre de lignes valides, on mets un 1, sinon si = 0 alors on mets 2, sinon 0
+    taille_valide = len(tab_valide)
+    for i, c in enumerate(colonnes):
+        if sum(c) == taille_valide and taille_valide>0:
+            tab_certain.append(1)
+        elif sum(c) == 0 or not sum(c):
+            tab_certain.append(2)
+        else:
+            tab_certain.append(0)
+    return tab_certain
+
+
+def tab_certains(tab_sur, indices_ligne, indices_colonne):
+    # Elle creer un tableau certain pour les lignes et colonnes
+    # Et les fusiones pour faire un grand tableaux de cases certaines
+    taille = len(indices_ligne)
+    binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire pour une certaine taille données
+    
+    certain_ligne = []
+    for i, indice in enumerate(indices_ligne):
+        certain_ligne.append(cases_certaines_hybride(tab_sur[i],indice,taille,binary_list)) # On fait un tableau avec toutes les cases certaines pour les lignes
+
+    certain_colonne_temp = []
+    for i, indice in enumerate(indices_colonne):
+        colonne = []
+        for j in range(len(tab_sur)):
+            colonne.append(tab_sur[j][i])
+        certain_colonne_temp.append(cases_certaines_hybride(colonne,indice,taille,binary_list)) # On fait un tableau avec toutes les cases certaines pour les colonnes
+
+    certain_colonne = inversion_tab(certain_colonne_temp)
+    
+    tab_certain = tab_fusion(certain_ligne,certain_colonne)
+    return (tab_certain != tab_sur), tab_certain
 
 
 """

@@ -25,6 +25,13 @@ def est_valide(ligne,indices) :
     return valide and i == nb_indices
 
 
+def valide_hybride(bin, ligne, indice):
+    for i, c in enumerate(ligne):
+        if (c == 1 and bin[i] == 0) or (c == 2 and bin[i] == 1):
+            return False
+    return est_valide(bin, indice)
+
+
 
 """indice = [1,3]
 ligne = [1,0,1,1,1,1]
