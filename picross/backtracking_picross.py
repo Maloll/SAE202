@@ -1,28 +1,45 @@
 from picross_maker import picrossMaker
-from picross.est_valide import est_valide
+from est_valide import *
 import numpy as np
 
-binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire données pour une certaine taille
+def liste_valide(bl, ligne, indice):
+    # Fonction qui renvoie la liste des lignes valides pour une ligne
+    tab_valide = []
+    for bin in bl:
+        if valide_hybride(bin, ligne, indice):
+            tab_valide.append(bin)
+    return tab_valide
 
-def backtraking_du_futur(compteur,grille, taille) :
-    if compteur == taille:
-        for i in range(taille) :
+
+def tab_valides(grille, il, ic, bl):
+    # Fonction qui renvoie une liste des listes des lignes valides
+    tab_valide_ligne = []
+    for i, ligne in enumerate(grille):
+        tab_valide_ligne.append(liste_valide(bl, ligne, il[i]))
+    
+    tab_valide_colonne = []
+    for i in range(len(grille)):
+        colonne = []
+        for ligne in grille:
+            colonne.append(ligne[i])
+        tab_valide_colonne.append(liste_valide(bl,colonne,ic[i]))
+
+    return tab_valide_ligne, tab_valide_colonne
+
+
+def backtracking(compteur, tab_l, tab_c, il, ic, grille_valide):
+    if compteur == len(il):
+        for i in range(compteur):
             colonne = []
-            for ligne in grille :
+            for ligne in grille_valide:
                 colonne.append(ligne[i])
-            if not est_valide(colonne, indices_colonne[i]) :
+            if not est_valide(colonne, ic[i]):
                 return False
         return True
 
-    for bin in binary_list :
-        if est_valide(bin, indices_ligne[compteur]) :
-            grille.append(bin)
-            if(backtraking_du_futur(compteur+1)) :
-                return True
-            grille.pop()
+    for ligne in tab_l[compteur]:
+        grille_valide.append(ligne)
+        if backtracking(compteur+1, tab_l, tab_c, il, ic,grille_valide):
+            return True
+        grille_valide.pop()
     return False
-
-
-"""print(backtraking_du_futur(0))
-for ligne in grille:
-    print(f"{ligne}")"""

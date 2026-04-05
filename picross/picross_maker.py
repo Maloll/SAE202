@@ -1,5 +1,5 @@
 def picrossMaker(Nomfich) :
-
+    # Une fonction qui prend un fichier .pic et renvoie les tableaux d'indices pour lignes et colonnes
     picross = []
     with open(Nomfich, 'r') as fich :
         for ligne in fich :

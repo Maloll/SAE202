@@ -115,8 +115,9 @@ def cases_certaines_hybride(ligne_sur, indices,taille,binary_list):
 
 
 def tab_certains(tab_sur, indices_ligne, indices_colonne):
+    # Fonction qui renvoie un tableau de cases certaines
     # Elle creer un tableau certain pour les lignes et colonnes
-    # Et les fusiones pour faire un grand tableaux de cases certaines
+    # Et les fusiones pour faire un grand tableau de cases certaines
     taille = len(indices_ligne)
     binary_list = np.unpackbits(np.arange(2 ** taille, dtype=np.uint32).astype('<u4').view(np.uint8).reshape(-1, 4), axis=1, bitorder='little', count=taille).tolist() #cette ligne permet la creation de toutes les combinaisons binaire pour une certaine taille données
     

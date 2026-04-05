@@ -6,7 +6,16 @@ from picross_maker import picrossMaker
 
 
 def afficher_pic(grille,indices_ligne,indices_colonne):
-    couleurs = ['red','black','white']
+    choix_couleur = 0
+    for ligne in grille : 
+        if 2 in ligne :
+            choix_couleur = 2
+            break
+    
+    if choix_couleur == 2:
+        couleurs = ['red','black','white']
+    else:
+        couleurs = ['white','black']
     colorMap = ListedColormap(couleurs)
     matrice = np.array(grille)
     taille = 10
