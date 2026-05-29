@@ -1,5 +1,13 @@
 ## Manuel solveur picross
 
+# SAE 202: Jeu Vidéo "Sokoban"
+
+Ce projet consistait à développer un solveur de picross optimisé entièrement en python, tout en apprenant les concepts de backtracking et d'optimisation.
+
+### Fonctionnalités
+* **Rendu visuel** : rendu coloré dans une fenetre matplotlib
+* **Solveur** : Le main hybride utilise une technologie de recherche intélligente et de backtracking pour les cases compliquées
+
 **PicrossMaker & fichier .pic** : 
 * La fonction `picrossMaker` prend un fichier .pic et renvoie les indices des lignes et colonnes.
 * Les fichiers .pic sont des fichiers composés uniquement de 0 et de 1 : les 0 sont les cases vides et les 1 sont les cases pleines.
